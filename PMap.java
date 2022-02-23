@@ -112,7 +112,8 @@ public class PMap {
     			entry.setValue(value);
     			return oldValue;
     		}
-    	}              	
+    	}  
+    	list.add(new PEntry(key, value));
         return null;
     }
 
@@ -196,7 +197,11 @@ public class PMap {
      * @return an array of the mappings contained in this map
      */
     public PEntry[] entrySet() {
-        PEntry[] mapping = (PEntry[])list.toArray();
+        PEntry[] mapping = new PEntry[size()];
+        for(int i = 0; i < size(); i++) {
+        	mapping[i] = new PEntry(list.get(i).getKey(), list.get(i).getValue());
+        }
         return mapping;
     }
 }
+
